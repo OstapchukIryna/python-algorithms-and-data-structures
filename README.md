@@ -6,6 +6,7 @@ Focus on understanding patterns and complexity rather than volume.
 ## Approach
 
 For each problem:
+
 - Solution code with type hints
 - Docstring with the approach, time and space complexity
 - Where relevant, comparison of multiple approaches
