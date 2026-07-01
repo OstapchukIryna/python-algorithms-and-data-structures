@@ -24,11 +24,14 @@ class MinHeap():
             i = smallest
             left = 2*i + 1
             right = 2*i + 2
+            
     def insert(self, element):
         self.heap.append(element)
         self._siftup(len(self.heap)-1)
+        
     def get_min(self):
         return self.heap[0] if len(self.heap) > 0 else None
+    
    # O (log n) since we sifting down
     def extract_min(self):
         if len(self.heap) == 0:
@@ -38,16 +41,19 @@ class MinHeap():
         self.heap.pop()
         self._siftdown(0)
         return root
+    
     def update_by_index(self, i, new):
         old = self.heap[i]
         self.heap[i] = new
         if new < old:
             self._siftup(i)     # O (log n)
         else:
-            self._siftdown(i)   # O (log n)
+            self._siftdown(i) 
+            # O (log n)
     def update(self, old, new): # O (n)
         if old in self.heap:
             self.update_by_index(self.heap.index(old), new) # O(log n) and finding index O (n)
+            
 def heapsort(arr):
     heap = MinHeap(arr)
-    return [heap.extract_min() for _ in range(len(heap.heap ))]
+    return [heap.extract_min() for _ in range(len(heap.heap))]
