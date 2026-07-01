@@ -45,9 +45,9 @@ class SudokuSolver:
         if not self._has_valid_shape(board):
             raise ValueError("Board must be a 9x9 grid.")
         self.board = board
-        self._rows = [set() for _ in range(self.BOARD_SIZE)]
-        self._cols = [set() for _ in range(self.BOARD_SIZE)]
-        self._boxes = [set() for _ in range(self.BOARD_SIZE)]
+        self._rows: List[set[str]] = [set() for _ in range(self.BOARD_SIZE)]
+        self._cols: List[set[str]] = [set() for _ in range(self.BOARD_SIZE)]
+        self._boxes: List[set[str]] = [set() for _ in range(self.BOARD_SIZE)]
         self._initialize_state()
 
     # ---------- Public API ----------
@@ -118,13 +118,13 @@ class SudokuSolver:
                     return True
                 self._unplace(row, col, digit, box)
         return False
-    
+
     def _place(self, row: int, col: int, digit: str, box: int) -> None:
         self.board[row][col] = digit
         self._rows[row].add(digit)
         self._cols[col].add(digit)
         self._boxes[box].add(digit)
-    
+
     def _unplace(self, row: int, col: int, digit: str, box: int) -> None:
         self.board[row][col] = self.EMPTY
         self._rows[row].remove(digit)
@@ -141,9 +141,9 @@ class SudokuSolver:
                     self._boxes[self._box_index(r, c)].add(value)
 
     def _is_currently_valid(self) -> bool:
-        rows = [set() for _ in range(self.BOARD_SIZE)]
-        cols = [set() for _ in range(self.BOARD_SIZE)]
-        boxes = [set() for _ in range(self.BOARD_SIZE)]
+        rows: List[set[str]] = [set() for _ in range(self.BOARD_SIZE)]
+        cols: List[set[str]] = [set() for _ in range(self.BOARD_SIZE)]
+        boxes: List[set[str]] = [set() for _ in range(self.BOARD_SIZE)]
         for r in range(self.BOARD_SIZE):
             for c in range(self.BOARD_SIZE):
                 value = self.board[r][c]
